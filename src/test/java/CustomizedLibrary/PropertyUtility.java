@@ -25,26 +25,6 @@ public class PropertyUtility {
 		return System.getProperty("user.dir")+prop.getProperty("GeckoDriverPath");
 	}
 	
-	
-	/**
-	 * this function is used for getting the value URLCreateAccount in the property file.
-	 */
-	public static String getUrlCreateAccount() throws IOException{
-		Properties prop=PropertyUtility.getProperty();
-		return prop.getProperty("URLCreateAccount");
-	}
-	
-	/**
-	 * this function is used for getting the value URLApplication in the property file.
-	 * @return 
-	 * @throws IOException
-	 */
-	public static String getUrlApplication() throws IOException{
-		Properties prop=PropertyUtility.getProperty();
-		return prop.getProperty("URLApplication");
-	}
-	
-	
 	/**
 	 * this function is used for gettign the value user.dir in the property file
 	 * @return

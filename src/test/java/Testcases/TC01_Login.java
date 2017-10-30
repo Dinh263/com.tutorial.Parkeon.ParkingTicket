@@ -17,24 +17,27 @@ public class TC01_Login {
 	
 	IndexPage indexobj;
 	WebDriver driver;
+	final static String URL = "http://path-to-park.us.elidev.info";
 	
 	@BeforeTest
 	public void openBrowserAndGoToWebsite() throws IOException {
 		System.setProperty("webdriver.gecko.driver",PropertyUtility.getGeckoDriverPath());
 		driver = new FirefoxDriver();
 		indexobj =  new IndexPage(driver);
-		indexobj.setPageUrl();
+		indexobj.loadPage(URL);
+		indexobj.maximazieWindow();
 		
 	}
 	
 	@Test
 	public void loginToAccount() {
-		
+		indexobj.goToMenuButton();
+		indexobj.logIn();
 	}
 	
 	@AfterTest
 	public void closeBrowser() {
-		
+		System.out.println("Test done");
 	}
 
 

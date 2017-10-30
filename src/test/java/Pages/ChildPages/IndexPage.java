@@ -14,17 +14,22 @@ public class IndexPage extends BasePage {
 	@FindBy(xpath="//div[@class='toogleButton-container']/button")
 	WebElement btnMenu;
 	
+	@FindBy(xpath="//[text()='Log in']")
+	WebElement btnLogIn;
 	
 	public IndexPage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub		
 	}
 	
-	public void clickMenuButton() {
+	public void goToMenuButton() {
 		waitForElemenet(btnMenu);
 		clickElement(btnMenu);
 	}
 	
-	
+	public void logIn() {
+		waitForElemenet(btnLogIn);
+		clickElement(btnLogIn);
+	}
 
 }

@@ -8,21 +8,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 	
-	protected String pageUrl;
+
 	protected  String pageTitle;
 	WebDriver driver;
 	WebDriverWait driverWait;
 	
 	public BasePage(WebDriver driver) {
-		pageUrl="";
+		
 		pageTitle="";
 		this.driver=driver;
 		PageFactory.initElements(driver	, this);		
 		driverWait=new WebDriverWait(driver, 120);
 	}
 	
-	public void loadPage() {
-		driver.get(pageUrl);
+	public void loadPage(String pageURL) {
+		driver.get(pageURL);
 	}
 	public void clickElement(WebElement element) {
 		element.click();
@@ -33,16 +33,12 @@ public class BasePage {
 		element.sendKeys(text);
 	}
 	
-	public String getPageUrl() {
-		return pageUrl;
-	}
-	
-	public void setPageUrl(String pTitle) {
-		pageTitle=pTitle;
-	}
-	
 	public void waitForElemenet(WebElement element) {
 		driverWait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	public void maximazieWindow() {
+		driver.manage().window().maximize();
 	}
 
 }

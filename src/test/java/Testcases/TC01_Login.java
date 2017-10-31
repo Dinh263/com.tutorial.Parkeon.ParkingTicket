@@ -1,5 +1,7 @@
 package Testcases;
 
+import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
 import java.util.Properties;
 
@@ -12,10 +14,12 @@ import org.testng.annotations.Test;
 
 import CustomizedLibrary.PropertyUtility;
 import Pages.ChildPages.IndexPage;
+import Pages.ChildPages.LoginPage;
 
 public class TC01_Login {
 	
 	IndexPage indexobj;
+	LoginPage loginobj;
 	WebDriver driver;
 	final static String URL = "http://path-to-park.us.elidev.info";
 	
@@ -33,6 +37,9 @@ public class TC01_Login {
 	public void loginToAccount() {
 		indexobj.goToMenuButton();
 		indexobj.logIn();
+		loginobj = new LoginPage(driver);
+		loginobj.loginToApp("user300@gmail.com", "123456789oO");
+		assertTrue(loginobj.isLoginSuccessful("PICK DURATION"));
 	}
 	
 	@AfterTest

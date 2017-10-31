@@ -40,5 +40,9 @@ public class BasePage {
 	public void maximazieWindow() {
 		driver.manage().window().maximize();
 	}
+	
+	public boolean pageShouldContain(WebElement element) {
+		return true;
+	}
 
 }

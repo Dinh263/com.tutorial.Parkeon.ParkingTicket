@@ -14,7 +14,7 @@ public class IndexPage extends BasePage {
 	@FindBy(xpath="//div[@class='toogleButton-container']/button")
 	WebElement btnMenu;
 	
-	@FindBy(xpath="//[text()='Log in']")
+	@FindBy(xpath="//div[@class='cdk-focus-trap-content']/md-nav-list[1]/md-list-item[6]/div")
 	WebElement btnLogIn;
 	
 	public IndexPage(WebDriver driver) {

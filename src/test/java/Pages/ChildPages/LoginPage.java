@@ -1,8 +1,5 @@
 package Pages.ChildPages;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,9 +8,6 @@ import Pages.ParentPage.BasePage;
 
 
 public class LoginPage extends BasePage {
-	
-	public static String PAGE_URL = "http://path-to-park.us.elidev.info";
-	public static String PAGE_TITLE = "PathToPark";
 	
 	@FindBy (xpath="//input[@type='email']")
 	WebElement txtEmail;
@@ -24,22 +18,23 @@ public class LoginPage extends BasePage {
 	@FindBy(xpath="//span[starts-with(text(),'LOG IN')]")
 	WebElement btnLogin;
 	
+	//@FindBy(xpath="//div[@class='mainCard']/md-card/div/div[2]/div[2]/a")
+	@FindBy(linkText="Register")
+	WebElement linkRegister;
+	
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
 	
 	private void inputEmail(String email) {
-		waitForElemenet(txtEmail);
 		setTextElement(txtEmail, email);
 	}
 	
 	private void inputPassWord(String password) {
-		waitForElemenet(txtPassword);
 		setTextElement(txtPassword, password);
 	}
 	
 	private void clickLogInButton() {
-		waitForElemenet(btnLogin);
 		clickElement(btnLogin);
 	}
 	
@@ -49,7 +44,9 @@ public class LoginPage extends BasePage {
 		clickLogInButton();
 	}
 	
-	public boolean isLoginSuccessful(String text) {
-		return true;
+	public void registerNewAccount() {
+		clickElement(linkRegister);
 	}
+	
+	
 }

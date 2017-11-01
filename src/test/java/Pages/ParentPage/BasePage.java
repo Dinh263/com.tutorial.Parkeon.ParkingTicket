@@ -1,9 +1,13 @@
 package Pages.ParentPage;
 
+
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
@@ -18,22 +22,24 @@ public class BasePage {
 		pageTitle="";
 		this.driver=driver;
 		PageFactory.initElements(driver	, this);		
-		driverWait=new WebDriverWait(driver, 120);
+		driverWait=new WebDriverWait(driver,120);
 	}
 	
 	public void loadPage(String pageURL) {
 		driver.get(pageURL);
 	}
 	public void clickElement(WebElement element) {
+		waitForElemenet(element);
 		element.click();
 	}
 	
 	public void setTextElement(WebElement element,String text) {
+		waitForElemenet(element);
 		element.clear();
 		element.sendKeys(text);
 	}
 	
-	public void waitForElemenet(WebElement element) {
+	private void waitForElemenet(WebElement element) {
 		driverWait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
@@ -41,8 +47,21 @@ public class BasePage {
 		driver.manage().window().maximize();
 	}
 	
-	public boolean pageShouldContain(WebElement element) {
-		return true;
+	public boolean pageContainElement(WebElement element) {
+		try {
+			waitForElemenet(element);
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public void setValueForDropDownList(WebElement element, String text) {
+		waitForElemenet(element);
+		Select ddList = new Select(element);
+		ddList.selectByVisibleText(text);
 	}
 
 }

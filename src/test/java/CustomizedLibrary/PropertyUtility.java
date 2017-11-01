@@ -34,5 +34,10 @@ public class PropertyUtility {
 		Properties prop=PropertyUtility.getProperty();
 		return System.getProperty("user.dir")+prop.getProperty("DataFileName");
 	}
+	
+	public static String getBaseUrl() throws IOException {
+		Properties prop=PropertyUtility.getProperty();
+		return prop.getProperty("baseUrl");
+	}
 
 }

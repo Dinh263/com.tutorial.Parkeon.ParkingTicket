@@ -1,10 +1,10 @@
 package Pages.ParentPage;
 
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -58,10 +58,18 @@ public class BasePage {
 		}
 	}
 	
-	public void setValueForDropDownList(WebElement element, String text) {
+	public void setTextForDropDownList(WebElement element, String text) {
 		waitForElemenet(element);
 		Select ddList = new Select(element);
 		ddList.selectByVisibleText(text);
+	}
+	
+	public String getTextOfElement(WebElement element) {
+		return element.getText();
+	}
+	
+	public void waitForPageLoad(WebElement element) {
+		waitForElemenet(element);
 	}
 
 }

@@ -13,6 +13,9 @@ public class HomePage extends BasePage {
 	
 	@FindBy(xpath="//div[@class='cdk-focus-trap-content']/md-nav-list[1]/md-list-item[7]/div")
 	WebElement btnLogOut;
+	
+	@FindBy(xpath="//div[@class='cdk-focus-trap-content']/md-nav-list[1]/md-list-item[1]/div")
+	WebElement lbelAccount;
 
 	public HomePage(WebDriver driver) {
 		super(driver);
@@ -28,6 +31,12 @@ public class HomePage extends BasePage {
 	public boolean isLogInSuccessful() {
 		return pageContainElement(btnLogOut);
 	}
+	
+	public void goToAccountSetting() {
+		clickElement(lbelAccount);
+	}
+	
+	
 	
 	
 	

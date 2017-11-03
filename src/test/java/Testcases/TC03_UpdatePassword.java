@@ -4,40 +4,31 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-
 import CustomizedLibrary.PropertyUtility;
-import DataMapping.DataTC02_RegisterAccount;
+
+import DataMapping.DataTC03_UpdatePassword;
 import Pages.ChildPages.AccountManagementPage;
 import Pages.ChildPages.HomePage;
 import Pages.ChildPages.IndexPage;
 import Pages.ChildPages.LoginPage;
-import Pages.ChildPages.RegisterCountryPage;
-import Pages.ChildPages.RegisterNewUserPage;
 
-public class TC02_RegisterAccount {
+
+public class TC03_UpdatePassword {
 	
-	WebDriver  driver;
-	
+	WebDriver driver;
 	IndexPage indexobj;
 	LoginPage loginobj;
 	HomePage homeobj;
-	RegisterCountryPage registerCountryobj;
-	RegisterNewUserPage registerNewUserobj;
 	AccountManagementPage accountobj;
 	
-	DataTC02_RegisterAccount data;
-	
-	String countryName;
-	String email;
-	String countryCode;
-	String phoneNumber;
-	String plateNumber;
-	String password;
+	DataTC03_UpdatePassword data;
+	String email="";
+	String oldpassword= "";
+	String newpassword= "";
 	
 	@BeforeTest
 	public void openBrowserAndGoToWebsite() throws IOException {
@@ -56,20 +47,18 @@ public class TC02_RegisterAccount {
 		indexobj.goToMenuSetting();
 		indexobj.logIn();
 		loginobj = new LoginPage(driver);
-		loginobj.registerNewAccount();
-		registerCountryobj = new RegisterCountryPage(driver);
-		registerCountryobj.selectCountry(countryName);
-		registerCountryobj.clickButtonApply();
-		registerNewUserobj = new RegisterNewUserPage(driver);
-		registerNewUserobj.registerNewUser(email, countryCode, phoneNumber, plateNumber, password);
-		Thread.sleep(15*1000);
+		loginobj.loginToApp(email, oldpassword);
 		homeobj = new HomePage(driver);
-		homeobj.goToMenuSetting();		
+		homeobj.goToMenuSetting();
+		Thread.sleep(15*1000);
 		homeobj.goToAccountSetting();
-		accountobj=new AccountManagementPage(driver);
+		accountobj= new AccountManagementPage(driver);
 		accountobj.waitPageLoadComplete();
-	
-
+		accountobj.UpdatePassword(oldpassword, newpassword);
+		accountobj.goToMenuSetting();
+		accountobj.logOutApplication();
+		loginobj.loginToApp(email, newpassword);
+		
 	}
 	
 	@AfterTest
@@ -78,12 +67,11 @@ public class TC02_RegisterAccount {
 	}
 	
 	public void initiateDataForTesting() throws IOException {
-		data =  new DataTC02_RegisterAccount(PropertyUtility.getDataFileNameWithPath());
-		countryName=data.getCountryName();
+		data =  new DataTC03_UpdatePassword(PropertyUtility.getDataFileNameWithPath());
 		email=data.getEmail();
-		countryCode=data.getCountryCode();
-		phoneNumber=data.getPhoneNumber();
-		plateNumber=data.getPlateNumber();
-		password=data.getPassword();
+		oldpassword=data.getOldPassword();
+		newpassword=data.getNewPassword();
+		
+		
 	}
 }

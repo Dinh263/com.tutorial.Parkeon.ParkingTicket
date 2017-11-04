@@ -54,6 +54,7 @@ public class TC01_Login {
 	@AfterTest
 	public void closeBrowser() {
 		System.out.println("Test done");
+		driver.close();
 	}
 	
 	public void initDataForTesting() throws IOException {

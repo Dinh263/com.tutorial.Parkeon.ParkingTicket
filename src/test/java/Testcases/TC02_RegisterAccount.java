@@ -75,6 +75,7 @@ public class TC02_RegisterAccount {
 	@AfterTest
 	public void closeBrowser() {
 		System.out.println("Test done");
+		driver.close();
 	}
 	
 	public void initiateDataForTesting() throws IOException {

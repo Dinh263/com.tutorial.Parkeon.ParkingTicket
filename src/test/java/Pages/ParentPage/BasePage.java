@@ -13,13 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
 	
 
-	protected  String pageTitle;
+	
 	WebDriver driver;
 	WebDriverWait driverWait;
 	
-	public BasePage(WebDriver driver) {
-		
-		pageTitle="";
+	public BasePage(WebDriver driver) {		
 		this.driver=driver;
 		PageFactory.initElements(driver	, this);		
 		driverWait=new WebDriverWait(driver,120);
@@ -65,6 +63,7 @@ public class BasePage {
 	}
 	
 	public String getTextOfElement(WebElement element) {
+		waitForElemenet(element);
 		return element.getText();
 	}
 	

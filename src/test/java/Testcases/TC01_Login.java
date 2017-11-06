@@ -14,6 +14,7 @@ import DataMapping.DataTC01_Login;
 import Pages.ChildPages.HomePage;
 import Pages.ChildPages.IndexPage;
 import Pages.ChildPages.LoginPage;
+import CustomizedLibrary.EnviromentSetting;
 
 public class TC01_Login {
 	
@@ -32,7 +33,7 @@ public class TC01_Login {
 	@BeforeTest
 	public void openBrowserAndGoToWebsite() throws IOException {
 		initDataForTesting();
-		System.setProperty("webdriver.gecko.driver",PropertyUtility.getGeckoDriverPath());
+		EnviromentSetting.setGeckoDriverPath();
 		driver = new FirefoxDriver();
 		indexobj =  new IndexPage(driver);
 		indexobj.loadPage(PropertyUtility.getBaseUrl());

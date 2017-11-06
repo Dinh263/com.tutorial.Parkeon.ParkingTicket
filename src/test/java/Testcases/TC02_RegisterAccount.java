@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-
+import CustomizedLibrary.EnviromentSetting;
 import CustomizedLibrary.PropertyUtility;
 import DataMapping.DataTC02_RegisterAccount;
 import Pages.ChildPages.AccountManagementPage;
@@ -42,7 +42,7 @@ public class TC02_RegisterAccount {
 	@BeforeTest
 	public void openBrowserAndGoToWebsite() throws IOException {
 		initiateDataForTesting();
-		System.setProperty("webdriver.gecko.driver",PropertyUtility.getGeckoDriverPath());
+		EnviromentSetting.setGeckoDriverPath();
 		driver = new FirefoxDriver();		
 		indexobj = new IndexPage(driver);
 		indexobj.loadPage(PropertyUtility.getBaseUrl());

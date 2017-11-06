@@ -8,6 +8,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import CustomizedLibrary.EnviromentSetting;
 import CustomizedLibrary.PropertyUtility;
 
 import DataMapping.DataTC03_UpdatePassword;
@@ -33,7 +34,7 @@ public class TC03_UpdatePassword {
 	@BeforeTest
 	public void openBrowserAndGoToWebsite() throws IOException {
 		initiateDataForTesting();
-		System.setProperty("webdriver.gecko.driver",PropertyUtility.getGeckoDriverPath());
+		EnviromentSetting.setGeckoDriverPath();
 		driver = new FirefoxDriver();		
 		indexobj = new IndexPage(driver);
 		indexobj.loadPage(PropertyUtility.getBaseUrl());
